@@ -37,8 +37,10 @@ public class AddNewBusStop extends Activity {
 	    
 	    //create two editTet boxes
 	    busStopNum = (EditText)findViewById(R.id.busStopNum);
-	    busStopDescription = (EditText)findViewById(R.id.busStopDescription);
+	    busStopNum.setMinimumWidth(450);
 	    
+	    busStopDescription = (EditText)findViewById(R.id.busStopDescription);
+	    busStopDescription.setMinimumWidth(450);
 	    
 	    //create a save button
 	    saveNewBusStop = (Button)findViewById(R.id.save);
