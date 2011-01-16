@@ -20,6 +20,8 @@ public class AddNewBusStop extends Activity {
 	private final static String TABLE_ID = "_id";
 	private final static String TABLE_DETAIL = "busStopDescription";
 	private final static String TABLE_DETAIL2 = "oppositeToThisBusStop";
+	//record count of request sent for this bus stop
+	private final static String TABLE_DETAIL3 = "hitCount";
 	
 	private EditText busStopNum;
 	private EditText busStopDescription;
@@ -54,6 +56,8 @@ public class AddNewBusStop extends Activity {
 	        	cv.put(TABLE_DETAIL, busStopDescription.getText().toString());
 	        	//add the opp bus stop num if have
 	        	cv.put(TABLE_DETAIL2, "NULL");
+	        	//init count to 0
+	        	cv.put(TABLE_DETAIL3, 0);
 	        	
 	        	//TODO handle situation when duplicated bus stop number
 	        	mSQLiteDatabase.insert(TABLE_NAME, null, cv);
@@ -66,7 +70,7 @@ public class AddNewBusStop extends Activity {
 	    	}
 	    });
 	    
-	    //create a ok button to go back to previous activity
+	    //create an ok button to go back to previous activity
 	    backButton = (Button)findViewById(R.id.back);
 	    backButton.setMinimumWidth(450);
 	    

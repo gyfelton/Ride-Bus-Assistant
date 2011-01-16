@@ -4,13 +4,21 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -26,13 +34,17 @@ public class BusStopListing extends Activity {
 	private final static String TABLE_ID = "_id";
 	private final static String TABLE_DETAIL = "busStopDescription";
 	private final static String TABLE_DETAIL2 = "oppositeToThisBusStop";
+	//record count of request sent for this bus stop
+	private final static String TABLE_DETAIL3 = "hitCount";
 	
 	private final static String CREATE_TABLE = "CREATE TABLE "
 											   + TABLE_NAME
 											   + " (" + TABLE_ID
 											   + " INTEGER PRIMARY KEY,"
 											   + TABLE_DETAIL + " TEXT,"
-											   + TABLE_DETAIL2 + " INTEGER)";
+											   + TABLE_DETAIL2 + " INTEGER,"
+											   + TABLE_DETAIL3 + " INTEGER)";
+											   
 	LinearLayout m_LinearLayout = null;
 	ListView m_ListView = null;
 	
@@ -54,8 +66,7 @@ public class BusStopListing extends Activity {
         
         setContentView(m_LinearLayout);
         
-        //TODO:!!!
-        this.deleteDatabase(DATABASE_NAME);
+        //this.deleteDatabase(DATABASE_NAME);
         mSQLiteDatabase = this.openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         
         try {
@@ -65,37 +76,47 @@ public class BusStopListing extends Activity {
         	//display results of database here (we need the database to be already exits
         	updateAdapter();
 		}
+        
+        //add clickListener for clicking an item on listView
+        m_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				Log.i("item: ", arg0.getItemAtPosition( arg2 ).toString());
+				showBusStopDetailsAndActions( arg2 );
+				//TODO!!!
+			}
+		});
     }
     
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-    	switch (keyCode) {
-    		case KeyEvent.KEYCODE_DPAD_LEFT:
-    			addBusStopNumber();
-    			break;
-    		case KeyEvent.KEYCODE_DPAD_RIGHT:
-    			deleteBusStopNumber();
-    			break;
-    		case KeyEvent.KEYCODE_DPAD_UP:
-    			editDescription();
-    			break;
-    	}
-    	return true;
-    }
-    
-    //add a ew bus stop number to db
-    public void addBusStopNumber() {
-    	ContentValues cv = new ContentValues();
-    	//TODO insert data based on user input
-    	Random ran = new Random();
-    	
-    	cv.put(TABLE_ID, ran.nextInt(9999));
-    	cv.put(TABLE_DETAIL, "Test for bus stop description");
-    	cv.put(TABLE_DETAIL2, ran.nextInt(9999));
-    	
-    	//TODO handle situation when duplicated bus stop number
-    	mSQLiteDatabase.insert(TABLE_NAME, null, cv);
-    	updateAdapter();
-    }
+//    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//    	switch (keyCode) {
+//    		case KeyEvent.KEYCODE_DPAD_LEFT:
+//    			addBusStopNumber();
+//    			break;
+//    		case KeyEvent.KEYCODE_DPAD_RIGHT:
+//    			deleteBusStopNumber();
+//    			break;
+//    		case KeyEvent.KEYCODE_DPAD_UP:
+//    			editDescription();
+//    			break;
+//    	}
+//    	return true;
+//    }
+//    
+//    //add a ew bus stop number to db
+//    public void addBusStopNumber() {
+//    	ContentValues cv = new ContentValues();
+//    	//TODO insert data based on user input
+//    	Random ran = new Random();
+//    	
+//    	cv.put(TABLE_ID, ran.nextInt(9999));
+//    	cv.put(TABLE_DETAIL, "Test for bus stop description");
+//    	cv.put(TABLE_DETAIL2, ran.nextInt(9999));
+//    	
+//    	//TODO handle situation when duplicated bus stop number
+//    	mSQLiteDatabase.insert(TABLE_NAME, null, cv);
+//    	updateAdapter();
+//    }
     
     public void deleteBusStopNumber() {
     	//TODO
@@ -127,5 +148,38 @@ public class BusStopListing extends Activity {
     		return true;
     	}
     	return super.onKeyDown(keyCode, event);
+    }
+    
+    public void showBusStopDetailsAndActions( int listRowID ) {
+    }
+    
+    //create the menu
+    public boolean onCreateOptionsMenu( Menu menu ) {
+    	MenuInflater inflater = getMenuInflater();
+    	//set res of menu to res/menu/menu.xml
+    	inflater.inflate( R.menu.menu, menu);
+    	return true;
+    }
+    
+    //process events of menu
+    public boolean onOptionsItemSelected( MenuItem item ) {
+    	int item_id = item.getItemId();
+    	
+    	switch ( item_id ) {
+    		case R.id.addBusStop:
+    			Intent intentAddBusStop = new Intent();
+    			intentAddBusStop.setClass( BusStopListing.this, AddNewBusStop.class );
+    			startActivity(intentAddBusStop);
+    			BusStopListing.this.finish();
+    			break;
+    		case R.id.about:
+    			Intent intentShowAbout = new Intent();
+    			intentShowAbout.setClass( BusStopListing.this, ShowAbout.class );
+    			startActivity(intentShowAbout);
+    			BusStopListing.this.finish();
+    			break;
+    	}
+    	
+    	return true;
     }
 }
