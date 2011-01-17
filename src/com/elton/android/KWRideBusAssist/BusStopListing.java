@@ -9,9 +9,11 @@ import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -82,10 +84,24 @@ public class BusStopListing extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				Log.i("item: ", arg0.getItemAtPosition( arg2 ).toString());
-				showBusStopDetailsAndActions( arg2 );
-				//TODO!!!
+				//TODO click now trigger sending sms
+				
+				//get cicked item's bus stop number
+				SQLiteCursor curr = (SQLiteCursor)arg0.getItemAtPosition( arg2 );
+				int busStopNum = curr.getInt( curr.getColumnIndex(TABLE_ID) );
+				Log.i("busStopNum is: ", Integer.toString( busStopNum ) );
+				
+				//now send the busstop num to 57555!
+				sendSMS( busStopNum );
 			}
 		});
+    }
+    
+    private boolean sendSMS( int busStopNum ) {
+    	SmsManager sms = SmsManager.getDefault();
+    	sms.sendTextMessage("57555", null, Integer.toString(busStopNum), null, null);
+    	Log.i("sendSMS", "message send!");
+    	return true;
     }
     
 //    public boolean onKeyUp(int keyCode, KeyEvent event) {
