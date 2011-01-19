@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+android:id="@+id/widget35"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TextView
+android:id="@+id/showDescription"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="There is no description"
+android:layout_below="@+id/showOppBusStopNum"
+android:layout_alignParentLeft="true"
+>
+</TextView>
+<TextView
+android:id="@+id/showOppBusStopNum"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="No information"
+android:layout_below="@+id/showBusStopNumber"
+android:layout_alignParentLeft="true"
+>
+</TextView>
+<TextView
+android:id="@+id/showBusStopNumber"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="!!!"
+android:layout_alignParentTop="true"
+android:layout_alignParentLeft="true"
+>
+</TextView>
+<Button
+android:id="@+id/sendSMS"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="Send SMS!"
+android:layout_centerVertical="true"
+android:layout_alignParentLeft="true"
+>
+</Button>
+</RelativeLayout>

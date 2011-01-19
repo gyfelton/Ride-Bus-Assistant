@@ -83,26 +83,25 @@ public class BusStopListing extends Activity {
 				int busStopNum = curr.getInt( curr.getColumnIndex(Constants.TABLE_ID) );
 				Log.i("busStopNum is: ", Integer.toString( busStopNum ) );
 				
-//				//get clicked item's details
-//				String busStopDescription = curr.getString( curr.getColumnIndex(Constants.TABLE_DETAIL))
-//	    		//create a bundle with bus stop number, all the details
-//	    		Bundle busStopInfo = new Bundle();
-//	    		busStopInfo.putInt( "stop number", value)
+				//get clicked item's details
+				String busStopDescription = curr.getString( curr.getColumnIndex(Constants.TABLE_DETAIL) );
+				int oppStopNum = curr.getInt( curr.getColumnIndex(Constants.TABLE_DETAIL2) );
+				
+	    		//create a bundle with bus stop number, all the details
+	    		Bundle busStopInfo = new Bundle();
+	    		busStopInfo.putInt( "stopNumber", busStopNum );
+	    		busStopInfo.putString( "description", busStopDescription );
+	    		busStopInfo.putInt( "oppStopNum", oppStopNum );
 	    		
-				Log.i("item: ", arg0.getItemAtPosition( arg2 ).toString());
-				//TODO click now trigger sending sms
-				//now send the busstop num to 57555!
-				sendSMS( busStopNum );
+	    		//create the intent to direct to the new activity
+	    		Intent showBusStopDetailsAndActions = new Intent( BusStopListing.this, ShowBusStopDetailsAndActions.class );
+	    		showBusStopDetailsAndActions.putExtras( busStopInfo );
+	    		startActivity(showBusStopDetailsAndActions);
+	    		BusStopListing.this.finish();
 			}
 		});
     }
     
-    private boolean sendSMS( int busStopNum ) {
-    	SmsManager sms = SmsManager.getDefault();
-    	sms.sendTextMessage("57555", null, Integer.toString(busStopNum), null, null);
-    	Log.i("sendSMS", "message send!");
-    	return true;
-    }
     
 //    public boolean onKeyUp(int keyCode, KeyEvent event) {
 //    	switch (keyCode) {
