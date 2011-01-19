@@ -12,16 +12,8 @@ import android.widget.EditText;
 
 public class AddNewBusStop extends Activity {
 
+	//TODO duplicated declare of database
 	private SQLiteDatabase mSQLiteDatabase = null;
-	private final static String DATABASE_NAME = "KWBusStopNumberAndDescription.db";
-	private final static String TABLE_NAME = "BusStopNumberAndDescriptionAndOppositeNumber";
-	
-	//id here refers to bus stop number
-	private final static String TABLE_ID = "_id";
-	private final static String TABLE_DETAIL = "busStopDescription";
-	private final static String TABLE_DETAIL2 = "oppositeToThisBusStop";
-	//record count of request sent for this bus stop
-	private final static String TABLE_DETAIL3 = "hitCount";
 	
 	private EditText busStopNum;
 	private EditText busStopDescription;
@@ -35,7 +27,7 @@ public class AddNewBusStop extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.addnewbusstopwindow);
-	    mSQLiteDatabase = this.openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+	    mSQLiteDatabase = this.openOrCreateDatabase(Constants.DATABASE_NAME, MODE_PRIVATE, null);
 	    
 	    //create two editTet boxes
 	    busStopNum = (EditText)findViewById(R.id.busStopNum);
@@ -52,15 +44,15 @@ public class AddNewBusStop extends Activity {
 	    	public void onClick(View v) {
 	        	ContentValues cv = new ContentValues();
 	        	
-	        	cv.put(TABLE_ID, Integer.valueOf( busStopNum.getText().toString() ) );
-	        	cv.put(TABLE_DETAIL, busStopDescription.getText().toString());
+	        	cv.put(Constants.TABLE_ID, Integer.valueOf( busStopNum.getText().toString() ) );
+	        	cv.put(Constants.TABLE_DETAIL, busStopDescription.getText().toString());
 	        	//add the opp bus stop num if have
-	        	cv.put(TABLE_DETAIL2, "NULL");
+	        	cv.put(Constants.TABLE_DETAIL2, "NULL");
 	        	//init count to 0
-	        	cv.put(TABLE_DETAIL3, 0);
+	        	cv.put(Constants.TABLE_DETAIL3, 0);
 	        	
 	        	//TODO handle situation when duplicated bus stop number
-	        	mSQLiteDatabase.insert(TABLE_NAME, null, cv);
+	        	mSQLiteDatabase.insert(Constants.TABLE_NAME, null, cv);
 	        	
 	        	//go back to listing
     			Intent intentBack = new Intent();
