@@ -3,7 +3,7 @@
       package="com.elton.android.KWRideBusAssist"
       android:versionCode="1"
       android:versionName="1.0">
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
         <activity android:name=".BusStopListing"
                   android:label="@string/app_name">
             <intent-filter>
@@ -13,7 +13,17 @@
         </activity>
 <activity android:name="AddNewBusStop"></activity>
 <activity android:name="ShowAbout"></activity>
+<receiver android:name="SMSReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+</receiver>
 </application>
 
 
+
+<uses-sdk android:minSdkVersion="4"></uses-sdk>
+
+<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
 </manifest> 

@@ -1,5 +1,7 @@
 package com.elton.android.KWRideBusAssist;
 
+import com.elton.android.KWRideBusAssist.Constants;
+
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,25 +29,16 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class BusStopListing extends Activity {
-	// private static int miscount = 0;
-	private SQLiteDatabase mSQLiteDatabase = null;
-	private final static String DATABASE_NAME = "KWBusStopNumberAndDescription.db";
-	private final static String TABLE_NAME = "BusStopNumberAndDescriptionAndOppositeNumber";
 	
-	//id here refers to bus stop number
-	private final static String TABLE_ID = "_id";
-	private final static String TABLE_DETAIL = "busStopDescription";
-	private final static String TABLE_DETAIL2 = "oppositeToThisBusStop";
-	//record count of request sent for this bus stop
-	private final static String TABLE_DETAIL3 = "hitCount";
+	private SQLiteDatabase mSQLiteDatabase = null;
 	
 	private final static String CREATE_TABLE = "CREATE TABLE "
-											   + TABLE_NAME
-											   + " (" + TABLE_ID
+											   + Constants.TABLE_NAME
+											   + " (" + Constants.TABLE_ID
 											   + " INTEGER PRIMARY KEY,"
-											   + TABLE_DETAIL + " TEXT,"
-											   + TABLE_DETAIL2 + " INTEGER,"
-											   + TABLE_DETAIL3 + " INTEGER)";
+											   + Constants.TABLE_DETAIL + " TEXT,"
+											   + Constants.TABLE_DETAIL2 + " INTEGER,"
+											   + Constants.TABLE_DETAIL3 + " INTEGER)";
 											   
 	LinearLayout m_LinearLayout = null;
 	ListView m_ListView = null;
@@ -69,7 +62,7 @@ public class BusStopListing extends Activity {
         setContentView(m_LinearLayout);
         
         //this.deleteDatabase(DATABASE_NAME);
-        mSQLiteDatabase = this.openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        mSQLiteDatabase = this.openOrCreateDatabase(Constants.DATABASE_NAME, MODE_PRIVATE, null);
         
         try {
         	mSQLiteDatabase.execSQL(CREATE_TABLE);
@@ -83,14 +76,21 @@ public class BusStopListing extends Activity {
         m_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Log.i("item: ", arg0.getItemAtPosition( arg2 ).toString());
-				//TODO click now trigger sending sms
 				
-				//get cicked item's bus stop number
 				SQLiteCursor curr = (SQLiteCursor)arg0.getItemAtPosition( arg2 );
-				int busStopNum = curr.getInt( curr.getColumnIndex(TABLE_ID) );
+			
+				//get clicked item's bus stop number
+				int busStopNum = curr.getInt( curr.getColumnIndex(Constants.TABLE_ID) );
 				Log.i("busStopNum is: ", Integer.toString( busStopNum ) );
 				
+//				//get clicked item's details
+//				String busStopDescription = curr.getString( curr.getColumnIndex(Constants.TABLE_DETAIL))
+//	    		//create a bundle with bus stop number, all the details
+//	    		Bundle busStopInfo = new Bundle();
+//	    		busStopInfo.putInt( "stop number", value)
+	    		
+				Log.i("item: ", arg0.getItemAtPosition( arg2 ).toString());
+				//TODO click now trigger sending sms
 				//now send the busstop num to 57555!
 				sendSMS( busStopNum );
 			}
@@ -145,13 +145,13 @@ public class BusStopListing extends Activity {
     //update list view
     void updateAdapter() {
     	//get cursor from db
-    	Cursor dbCursor = mSQLiteDatabase.query(TABLE_NAME, new String[] { TABLE_ID, TABLE_DETAIL, TABLE_DETAIL2 }, null, null, null, null, null);
+    	Cursor dbCursor = mSQLiteDatabase.query(Constants.TABLE_NAME, new String[] { Constants.TABLE_ID, Constants.TABLE_DETAIL, Constants.TABLE_DETAIL2 }, null, null, null, null, null);
     	
     	if( dbCursor != null && dbCursor.getCount() >= 0 ) {
     		ListAdapter adapter = new SimpleCursorAdapter( this, 
     													android.R.layout.simple_list_item_2, 
     													dbCursor,
-    													new String[] { TABLE_DETAIL, TABLE_ID },
+    													new String[] { Constants.TABLE_DETAIL, Constants.TABLE_ID },
     													new int[] { android.R.id.text1, android.R.id.text2 } );
     		m_ListView.setAdapter(adapter);
     	}
