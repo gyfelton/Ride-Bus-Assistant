@@ -6,21 +6,17 @@ android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
 <TextView
-android:id="@+id/showDescription"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="There is no description"
-android:layout_below="@+id/showOppBusStopNum"
-android:layout_alignParentLeft="true"
->
-</TextView>
-<TextView
 android:id="@+id/showOppBusStopNum"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:text="No information"
-android:layout_below="@+id/showBusStopNumber"
-android:layout_alignParentLeft="true"
+>
+</TextView>
+<TextView
+android:id="@+id/showDescription"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="There is no description"
 >
 </TextView>
 <TextView
@@ -32,6 +28,16 @@ android:layout_alignParentTop="true"
 android:layout_alignParentLeft="true"
 >
 </TextView>
+<Button
+android:id="@+id/showBack"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Back"
+android:gravity="center"
+android:layout_below="@+id/sendSMS"
+android:layout_centerHorizontal="true"
+>
+</Button>
 <Button
 android:id="@+id/sendSMS"
 android:layout_width="fill_parent"

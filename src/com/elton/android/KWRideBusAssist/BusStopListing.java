@@ -133,14 +133,6 @@ public class BusStopListing extends Activity {
 //    	updateAdapter();
 //    }
     
-    public void deleteBusStopNumber() {
-    	//TODO
-    }
-    
-    public void editDescription() {
-    	//TODO
-    }
-    
     //update list view
     void updateAdapter() {
     	//get cursor from db
@@ -172,7 +164,7 @@ public class BusStopListing extends Activity {
     public boolean onCreateOptionsMenu( Menu menu ) {
     	MenuInflater inflater = getMenuInflater();
     	//set res of menu to res/menu/menu.xml
-    	inflater.inflate( R.menu.menu, menu);
+    	inflater.inflate( R.menu.menuforlist, menu);
     	return true;
     }
     
