@@ -11,4 +11,9 @@ public class Constants {
 	public final static String TABLE_DETAIL2 = "oppositeToThisBusStop";
 	//record count of request sent for this bus stop
 	public final static String TABLE_DETAIL3 = "hitCount";
+	
+	//sender' number, will be modified later
+	public static String SENDER_NUM = "57555";
+	
+	public static boolean ACTIVE = false;
 }

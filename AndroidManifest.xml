@@ -14,11 +14,12 @@
 <activity android:name="AddNewBusStop"></activity>
 <activity android:name="ShowAbout"></activity>
 <receiver android:name="SMSReceiver">
-            <intent-filter>
+            <intent-filter android:priority="100">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
 </receiver>
 <activity android:name="ShowBusStopDetailsAndActions"></activity>
+
 </application>
 
 
