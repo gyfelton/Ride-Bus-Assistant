@@ -2,20 +2,15 @@ package com.elton.android.KWRideBusAssist;
 
 import com.elton.android.KWRideBusAssist.Constants;
 
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -47,6 +42,9 @@ public class BusStopListing extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Constants.ACTIVE = true;
+        //set the sender num!
+        Constants.SENDER_NUM = "57555";
         m_LinearLayout = new LinearLayout(this);
         
         //set properties of m_LinearLayout
@@ -102,37 +100,6 @@ public class BusStopListing extends Activity {
 		});
     }
     
-    
-//    public boolean onKeyUp(int keyCode, KeyEvent event) {
-//    	switch (keyCode) {
-//    		case KeyEvent.KEYCODE_DPAD_LEFT:
-//    			addBusStopNumber();
-//    			break;
-//    		case KeyEvent.KEYCODE_DPAD_RIGHT:
-//    			deleteBusStopNumber();
-//    			break;
-//    		case KeyEvent.KEYCODE_DPAD_UP:
-//    			editDescription();
-//    			break;
-//    	}
-//    	return true;
-//    }
-//    
-//    //add a ew bus stop number to db
-//    public void addBusStopNumber() {
-//    	ContentValues cv = new ContentValues();
-//    	//TODO insert data based on user input
-//    	Random ran = new Random();
-//    	
-//    	cv.put(TABLE_ID, ran.nextInt(9999));
-//    	cv.put(TABLE_DETAIL, "Test for bus stop description");
-//    	cv.put(TABLE_DETAIL2, ran.nextInt(9999));
-//    	
-//    	//TODO handle situation when duplicated bus stop number
-//    	mSQLiteDatabase.insert(TABLE_NAME, null, cv);
-//    	updateAdapter();
-//    }
-    
     //update list view
     void updateAdapter() {
     	//get cursor from db
@@ -150,8 +117,11 @@ public class BusStopListing extends Activity {
     
     public boolean onKeyDown( int keyCode, KeyEvent event ) {
     	if( keyCode == KeyEvent.KEYCODE_BACK ) {
-    		mSQLiteDatabase.close();
-    		this.finish();
+    		//TODO this line needs to be add to the very first screen in the future
+    		Constants.ACTIVE = false;
+    		//TODO sth else abt back needs to be set
+//    		mSQLiteDatabase.close();
+//    		this.finish();
     		return true;
     	}
     	return super.onKeyDown(keyCode, event);
@@ -188,5 +158,11 @@ public class BusStopListing extends Activity {
     	}
     	
     	return true;
+    }
+    
+    public void onSaveInstanceState(Bundle outState) {
+    	//when click HOME button, set active to false
+    	Constants.ACTIVE = false;
+    	Log.v("onDestroy", "set active to false");
     }
 }
