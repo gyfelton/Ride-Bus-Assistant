@@ -4,7 +4,11 @@
 	<string name="save">保存</string>
     <string name="back">返回</string>
     <string name="busStopNum">巴士站编号</string>
-    <string name="description">描述</string>
+    <string name="oppBusStopNum">正对面的车站编号:</string>
+    <string name="sendSMS">发送短信给</string>
+    <string name="noOppBusStopNum">未知</string>
+    <string name="description">描述：</string>
+    <string name="direction">行驶方向:</string>
     <string name="addBusStop">添加</string>
     <string name="addBusStopHeader">添加一个新的巴士站</string>
     <string name="about">关于</string>
@@ -16,4 +20,7 @@
     <string name="descriptionExample">比如：我家外面的巴士站</string>
     <string name="hintDirection">请在下面输入巴士的行驶方向：</string>
     <string name="directionExample">比如：前往/来自于我的大学</string>
+    
+    <string name="noDescription">没有这个车站的描述。点击菜单键以添加</string>
+    <string name="noDirection">没有这个车站关于行驶方向的描述。点击菜单键以添加</string>
 </resources>

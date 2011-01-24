@@ -4,7 +4,11 @@
     <string name="save">Save</string>
     <string name="back">Back</string>
     <string name="busStopNum">Bus Stop Number</string>
-    <string name="description">Description</string>
+    <string name="oppBusStopNum">Opposite Bus Stop Number:</string>
+    <string name="noOppBusStopNum">Unknown</string>
+    <string name="sendSMS">send SMS to</string>
+    <string name="description">Description:</string>
+    <string name="direction">Direction:</string>
     <string name="addBusStop">Add</string>
     <string name="addBusStopHeader">Add a new bus stop</string>
     <string name="about">About</string>
@@ -16,4 +20,6 @@
     <string name="descriptionExample">e.g. Bus stop outside my home</string>
     <string name="hintDirection">Which direction does this bus goes to?</string>
     <string name="directionExample">e.g. To/From my university</string>
+    <string name="noDescription">No description specified for this bus stop. Press Menu to add a description.</string>
+    <string name="noDirection">No direction information for this bus stop. Press Menu to add a description.</string>
 </resources>

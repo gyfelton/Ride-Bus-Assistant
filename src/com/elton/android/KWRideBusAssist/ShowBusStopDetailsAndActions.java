@@ -71,11 +71,12 @@ public class ShowBusStopDetailsAndActions extends Activity {
 		showOppBusStopNum = (TextView)findViewById(R.id.showOppBusStopNum);
 		if( m_oppBusStopNum != 0 ) {
 			showOppBusStopNum.setText(Integer.toString(m_oppBusStopNum));
-			showOppBusStopNum.setMinimumWidth(450);
+			//showOppBusStopNum.setMinimumWidth(450);
 		}
 		
 		sendSMSButton = (Button)findViewById(R.id.sendSMS);
-		sendSMSButton.setMinimumWidth(450);
+		sendSMSButton.setText(sendSMSButton.getText()+Constants.SENDER_NUM);
+		sendSMSButton.setMinimumWidth(200);
 		
 		sendSMSButton.setOnClickListener( new Button.OnClickListener() {
 			public void onClick(View v) {
@@ -106,7 +107,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
 		});
 		
 	    backButton = (Button)findViewById(R.id.showBack);
-	    backButton.setMinimumWidth(450);
+	    backButton.setMinimumWidth(200);
 	    
 	    backButton.setOnClickListener( new Button.OnClickListener() { 
 	    	public void onClick(View v) {
