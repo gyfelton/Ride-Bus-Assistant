@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, BusStopListing!</string>
-    <string name="app_name">KWRideBusAssist</string>
+    <string name="app_name">Ride Bus Assistant</string>
+    <string name="save">Save</string>
+    <string name="back">Back</string>
+    <string name="busStopNum">Bus Stop Number</string>
+    <string name="description">Description</string>
+    <string name="addBusStop">Add</string>
+    <string name="addBusStopHeader">Add a new bus stop</string>
+    <string name="about">About</string>
+    <string name="editBusStop">Edit</string>
+    <string name="deleteBusStop">Delete</string>
+    <string name="hintBusStopNum">Enter the bus stop number here:</string>
+    <string name="busStopNumExample">e.g. 3333</string>
+    <string name="hintDescription">Enter a description here:</string>
+    <string name="descriptionExample">e.g. Bus stop outside my home</string>
+    <string name="hintDirection">Which direction does this bus goes to?</string>
+    <string name="directionExample">e.g. To/From my university</string>
 </resources>

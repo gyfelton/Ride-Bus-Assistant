@@ -11,7 +11,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<activity android:name="AddNewBusStop"></activity>
+<activity android:name="AddNewBusStop" android:label="@string/addBusStopHeader"></activity>
 <activity android:name="ShowAbout"></activity>
 <receiver android:name="SMSReceiver">
             <intent-filter android:priority="100">

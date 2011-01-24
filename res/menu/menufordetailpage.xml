@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:id="@+id/edit" android:title="Edit"></item>
-<item android:id="@+id/delete" android:title="Delete this bus stop"></item>
+<item android:id="@+id/edit" android:title="@string/editBusStop" android:icon="@drawable/edit"></item>
+<item android:id="@+id/delete" android:title="@string/deleteBusStop" android:icon="@drawable/delete"></item>
 </menu>

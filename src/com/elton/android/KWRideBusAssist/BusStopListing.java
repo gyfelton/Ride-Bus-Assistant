@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -43,6 +44,7 @@ public class BusStopListing extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Constants.ACTIVE = true;
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         //set the sender num!
         Constants.SENDER_NUM = "57555";
         m_LinearLayout = new LinearLayout(this);

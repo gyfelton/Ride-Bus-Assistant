@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:id="@+id/addBusStop" android:title="Add a Bus Stop"></item>
-<item android:id="@+id/about" android:title="About"></item>
+<item android:id="@+id/addBusStop" android:title="@string/addBusStop" android:icon="@drawable/add"></item>
+<item android:id="@+id/about" android:title="@string/about" android:icon="@drawable/info"></item>
 </menu>

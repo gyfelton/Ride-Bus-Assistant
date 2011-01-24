@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="app_name">搭乘巴士小助手</string>
+	<string name="save">保存</string>
+    <string name="back">返回</string>
+    <string name="busStopNum">巴士站编号</string>
+    <string name="description">描述</string>
+    <string name="addBusStop">添加</string>
+    <string name="addBusStopHeader">添加一个新的巴士站</string>
+    <string name="about">关于</string>
+    <string name="editBusStop">编辑</string>
+    <string name="deleteBusStop">删除</string>
+    <string name="hintBusStopNum">请在下面输入巴士站编号：</string>
+    <string name="busStopNumExample">比如：3333</string>
+    <string name="hintDescription">请在下面输入对这个巴士站的描述：</string>
+    <string name="descriptionExample">比如：我家外面的巴士站</string>
+    <string name="hintDirection">请在下面输入巴士的行驶方向：</string>
+    <string name="directionExample">比如：前往/来自于我的大学</string>
 </resources>

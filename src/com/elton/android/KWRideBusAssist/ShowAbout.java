@@ -16,7 +16,7 @@ public class ShowAbout extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
-	    textView = (TextView)this.findViewById(R.id.textview);
+	    textView = (TextView)this.findViewById(R.id.about);
 	    String string = "About: created by gyfelton";
 	    textView.setText(string);
 	    

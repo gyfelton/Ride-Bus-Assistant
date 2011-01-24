@@ -1,28 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-	android:id="@+id/header"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="Add a New Bus Stop"
-    />
-
-
-<EditText android:hint="Enter the Bus Stop Number" 
-android:id="@+id/busStopNum" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" android:gravity="center"></EditText>
-
-<EditText android:hint="Add Description here" 
-android:id="@+id/busStopDescription" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" android:gravity="center"></EditText>
-
-<Button android:text="Save" android:id="@+id/save" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-<Button android:layout_height="wrap_content" android:id="@+id/back" android:text="Back" android:layout_width="wrap_content"></Button>
-
-</LinearLayout>
+<AbsoluteLayout
+android:id="@+id/widget29"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TextView
+android:id="@+id/hintBusStopNum"
+android:layout_width="fill_parent"
+android:layout_height="35px"
+android:text="@string/hintBusStopNum"
+android:textStyle="bold"
+android:layout_x="0px"
+android:layout_y="27px"
+>
+</TextView>
+<EditText
+android:id="@+id/busStopNum"
+android:hint="@string/busStopNumExample"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_x="1px"
+android:layout_y="54px"
+>
+</EditText>
+<TextView
+android:id="@+id/hintDescription"
+android:layout_width="fill_parent"
+android:layout_height="35px"
+android:text="@string/hintDescription"
+android:textStyle="bold"
+android:layout_x="0px"
+android:layout_y="204px"
+>
+</TextView>
+<EditText
+android:id="@+id/busStopDescription"
+android:hint="@string/descriptionExample"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_x="0px"
+android:layout_y="138px"
+>
+</EditText>
+<TextView
+android:id="@+id/hintDirection"
+android:layout_width="fill_parent"
+android:layout_height="35px"
+android:text="@string/hintDirection"
+android:textStyle="bold"
+android:layout_x="0px"
+android:layout_y="114px"
+>
+</TextView>
+<EditText
+android:id="@+id/busStopDirection"
+android:hint="@string/directionExample"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_x="2px"
+android:layout_y="227px"
+>
+</EditText>
+<Button
+android:id="@+id/save"
+android:layout_width="120px"
+android:layout_height="wrap_content"
+android:text="@string/save"
+android:layout_x="21px"
+android:layout_y="301px"
+>
+</Button>
+<Button
+android:id="@+id/back"
+android:layout_width="120px"
+android:layout_height="wrap_content"
+android:text="@string/back"
+android:layout_x="174px"
+android:layout_y="301px"
+>
+</Button>
+</AbsoluteLayout>
