@@ -1,5 +1,7 @@
 package com.elton.android.KWRideBusAssist;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -8,6 +10,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +20,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SmsManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,7 +53,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    //this line need to be included in every activity
-	    Constants.ACTIVE = true;
+	    Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
 	    setContentView(R.layout.showbusstopdetailsandactions);
 	    
 	    Bundle busStopInfo = getIntent().getExtras();
@@ -119,6 +125,30 @@ public class ShowBusStopDetailsAndActions extends Activity {
 	    });
 	}
 	
+    @Override
+    public void onResume() {
+    	 SharedPreferences sp;
+    	 sp = getSharedPreferences("S.PRE", 0);
+	     if( sp.getBoolean("S.PRE_CHINESE", false) ) {
+	       	 Locale locale =  Locale.SIMPLIFIED_CHINESE;
+	       	 Locale.setDefault(locale);
+	       	 
+	       	 Configuration config = new Configuration();
+	       	 config.locale = locale;
+	       	 getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+	   	} else {
+	       	 Locale locale = Locale.ENGLISH;
+	       	 Locale.setDefault(locale);
+	       	 
+	      	     Resources resources = getBaseContext().getResources();
+	   	     Configuration config = resources.getConfiguration();
+	   	     DisplayMetrics dm = resources .getDisplayMetrics(); 
+	   	     config.locale = locale;
+	   	     resources.updateConfiguration(config, dm);
+	   	}
+    	super.onResume();
+    }
+    
     //create the menu
     public boolean onCreateOptionsMenu( Menu menu ) {
     	MenuInflater inflater = getMenuInflater();
@@ -198,7 +228,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
     //need to be included in every activity
     public void onSaveInstanceState(Bundle outState) {
     	//when click HOME button, set active to false
-    	Constants.ACTIVE = false;
+    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
     	Log.d("onSaveInstance", "set active to false");
     }
 }
