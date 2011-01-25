@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">搭乘巴士小助手</string>
+	<string name="app_name">巴士搭乘小助手</string>
+	<string name="viewAllList">所有巴士站</string>
+	<string name="busStopListing">巴士搭乘小助手</string>
 	<string name="save">保存</string>
     <string name="back">返回</string>
     <string name="busStopNum">巴士站编号</string>

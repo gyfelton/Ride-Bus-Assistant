@@ -37,6 +37,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
 	
 	private TextView showBusStopNum;
 	private TextView showDescription;
+	private TextView showDirection;
 	private TextView showOppBusStopNum;
 	private Button sendSMSButton;
 	private Button backButton;
@@ -45,6 +46,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
 	
 	private int m_busStopNumber;
 	private String m_description;
+	private String m_direction;
 	private int m_oppBusStopNum;
 	private int m_resultCode;
 	
@@ -60,24 +62,27 @@ public class ShowBusStopDetailsAndActions extends Activity {
 	    
 	    m_busStopNumber = busStopInfo.getInt( "stopNumber" );
 		m_description = busStopInfo.getString( "description" );
+		m_direction = busStopInfo.getString( "busDirection" );
 		//oppNum may be null
 		m_oppBusStopNum = busStopInfo.getInt( "oppStopNum" );
 		
 		//show the info we got 
 		showBusStopNum = (TextView)findViewById(R.id.showBusStopNumber);
 		showBusStopNum.setText(Integer.toString(m_busStopNumber));
-		showBusStopNum.setMinimumWidth(450);
 		
 		showDescription = (TextView)findViewById(R.id.showDescription);
 		if( m_description != null ) {
 			showDescription.setText( m_description );
-			showBusStopNum.setMinimumWidth(450);
+		}
+		
+		showDirection = (TextView)findViewById(R.id.showDirection);
+		if( m_direction != null ) {
+			showDirection.setText( m_direction );
 		}
 		
 		showOppBusStopNum = (TextView)findViewById(R.id.showOppBusStopNum);
 		if( m_oppBusStopNum != 0 ) {
 			showOppBusStopNum.setText(Integer.toString(m_oppBusStopNum));
-			//showOppBusStopNum.setMinimumWidth(450);
 		}
 		
 		sendSMSButton = (Button)findViewById(R.id.sendSMS);

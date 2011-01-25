@@ -17,7 +17,7 @@ public class SMSReceiver extends BroadcastReceiver {
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if( intent.getAction().equals(strRes) && Constants.ACTIVE ) {
+		if( intent.getAction().equals(strRes) && Constants.SMS_INTERCEPTOR_IS_ACTIVE ) {
 			//display bus stop info
 			Bundle bundle = intent.getExtras();
 			if( bundle != null ) {
