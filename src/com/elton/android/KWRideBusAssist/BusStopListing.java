@@ -6,24 +6,23 @@ import com.elton.android.KWRideBusAssist.Constants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -128,8 +127,28 @@ public class BusStopListing extends Activity {
 	    		BusStopListing.this.finish();
 			}
 		});
+        
+	    //notify user the reply of SMS, need to add to every activity
+	    getSharedPreferences("S.PRE", 0).registerOnSharedPreferenceChangeListener(replyListener);
     }
     
+	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
+		private AlertDialog m_showReply;
+		@Override
+	    //used to notify user the return of SMS
+	    public void onSharedPreferenceChanged( SharedPreferences reply, String message) {
+	    	m_showReply = new AlertDialog.Builder(BusStopListing.this)
+	    								.setTitle(R.string.receiveSMSDialogTitle)
+	    								.setMessage(reply.getString(message, "Opps! Something is wrong! pleace contact me!"))
+	    								.setNegativeButton("Ok", new OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												m_showReply.dismiss();
+											}
+										}).create();
+	    	m_showReply.show();
+	    }
+	};
 //    @Override
 //    public void onResume() {
 //    	 SharedPreferences sp;
@@ -212,6 +231,13 @@ public class BusStopListing extends Activity {
     	return true;
     }
     
+    @Override
+    public void onPause() {
+    	getSharedPreferences("S.PRE", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
+    	super.onPause();
+    }
+    
+    @Override
     public void onSaveInstanceState(Bundle outState) {
     	//when click HOME button, set active to false
     	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;

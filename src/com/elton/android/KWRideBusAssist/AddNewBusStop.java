@@ -2,10 +2,15 @@ package com.elton.android.KWRideBusAssist;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -116,6 +121,40 @@ public class AddNewBusStop extends Activity {
     			AddNewBusStop.this.finish();
 	    	}
 	    });
+	    
+	    //notify user the reply of SMS, need to add to every activity
+	    getSharedPreferences("S.PRE", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
 
+	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
+		private AlertDialog m_showReply;
+		@Override
+	    //used to notify user the return of SMS
+	    public void onSharedPreferenceChanged( SharedPreferences reply, String message) {
+	    	m_showReply = new AlertDialog.Builder(AddNewBusStop.this)
+	    								.setTitle(R.string.receiveSMSDialogTitle)
+	    								.setMessage(reply.getString(message, "Opps! Something is wrong! pleace contact me!"))
+	    								.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												m_showReply.dismiss();
+											}
+										}).create();
+	    	m_showReply.show();
+	    }
+	};
+	
+    @Override
+    public void onPause() {
+    	getSharedPreferences("S.PRE", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
+    	super.onPause();
+    }
+    
+	@Override
+    //need to be included in every activity
+    public void onSaveInstanceState(Bundle outState) {
+    	//when click HOME button, set active to false
+    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
+    	Log.d("onSaveInstance", "set active to false");
+    }
 }

@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -86,4 +87,12 @@ public class AppStartConfig extends Activity {
 	    		AppStartConfig.this.finish();
         }
 	}
+	
+	@Override
+    //need to be included in every activity
+    public void onSaveInstanceState(Bundle outState) {
+    	//when click HOME button, set active to false
+    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
+    	Log.d("onSaveInstance", "set active to false");
+    }
 }

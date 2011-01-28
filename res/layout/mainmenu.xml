@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-<Button android:text="@string/viewAllList" android:id="@+id/viewAllList" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-</LinearLayout>
+<RelativeLayout
+android:id="@+id/widget29"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<RelativeLayout
+android:id="@+id/innerMain"
+android:layout_width="275px"
+android:layout_height="372px"
+android:layout_centerVertical="true"
+android:layout_centerHorizontal="true"
+>
+<Button
+android:id="@+id/viewAllList"
+android:layout_width="125px"
+android:layout_height="44px"
+android:text="@string/viewAllList"
+android:layout_below="@+id/version"
+android:layout_marginTop="50px"
+android:gravity="center"
+android:layout_centerHorizontal="true"
+>
+</Button>
+<TextView
+android:id="@+id/version"
+android:layout_width="wrap_content"
+android:layout_height="41px"
+android:text="Beta"
+android:gravity="center"
+android:layout_below="@+id/mainMenuTitle"
+android:layout_centerHorizontal="true"
+>
+</TextView>
+<TextView
+android:id="@+id/mainMenuTitle"
+android:layout_width="217px"
+android:layout_height="33px"
+android:text="@string/mainMenuTitle"
+android:textSize="22sp"
+android:gravity="center"
+android:layout_marginTop="50px"
+android:layout_alignParentTop="true"
+android:layout_centerHorizontal="true"
+>
+</TextView>
+</RelativeLayout>
+</RelativeLayout>

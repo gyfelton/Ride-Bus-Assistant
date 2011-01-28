@@ -25,4 +25,10 @@
     
     <string name="noDescription">没有这个车站的描述。点击菜单键以添加</string>
     <string name="noDirection">没有这个车站关于行驶方向的描述。点击菜单键以添加</string>
+    <string name="sendSMSDialogTitle">请稍等</string>
+    <string name="sendSMSDialogBody">发送短信中……</string>
+    <string name="sendSMSSuccess">发送短信成功！</string>
+    <string name="sendSMSFail">发送短信失败！请稍后重试</string>
+    <string name="receiveSMSDialogTitle">下一班巴士信息</string>
+    <string name="mainMenuTitle">巴士搭乘小助手</string>
 </resources>
