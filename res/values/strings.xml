@@ -30,4 +30,9 @@
     <string name="sendSMSFail">Opps! Sending message has failed, please try again later.</string>
     <string name="receiveSMSDialogTitle">Next Bus Information</string>
     <string name="mainMenuTitle">Bus Ride Assistant</string>
+    <string name="warning">Warning</string>
+    <string name="deleteWarningMessage">This bus stop and it\'s information is about to be deleted.\nContinue?</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="deleteSuccess">Bus Stop Deleted</string>
 </resources>

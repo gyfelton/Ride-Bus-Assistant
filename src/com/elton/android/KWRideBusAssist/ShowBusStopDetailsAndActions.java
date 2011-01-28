@@ -2,6 +2,7 @@ package com.elton.android.KWRideBusAssist;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -224,14 +225,34 @@ public class ShowBusStopDetailsAndActions extends Activity {
     	return true;
     }
     
+    private Dialog m_confirmDialog;
     private void deleteBusStop() {
-    	//TODO add confirm dialog
-    	mSQLiteDatabase = this.openOrCreateDatabase(Constants.DATABASE_NAME, MODE_PRIVATE, null);
-    	mSQLiteDatabase.delete(Constants.TABLE_NAME, Constants.TABLE_ID + "=?", new String[] {Integer.toString(m_busStopNumber)});
-		Intent intentBack = new Intent();
-		intentBack.setClass( ShowBusStopDetailsAndActions.this, BusStopListing.class );
-		startActivity(intentBack);
-		ShowBusStopDetailsAndActions.this.finish();
+    	m_confirmDialog = new AlertDialog.Builder(ShowBusStopDetailsAndActions.this)
+    							.setTitle(R.string.warning)
+    							.setMessage(R.string.deleteWarningMessage)
+    							.setCancelable(true)
+    							.setNegativeButton(R.string.cancel, new OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										m_confirmDialog.dismiss();
+									}
+								})
+    							.setPositiveButton(R.string.confirm, new OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										// TODO Auto-generated method stub
+								    	mSQLiteDatabase = ShowBusStopDetailsAndActions.this.openOrCreateDatabase(Constants.DATABASE_NAME, MODE_PRIVATE, null);
+								    	if( mSQLiteDatabase.delete(Constants.TABLE_NAME, Constants.TABLE_ID + "=?", new String[] {Integer.toString(m_busStopNumber)} ) > 0) {
+								    		Toast deleted = Toast.makeText(ShowBusStopDetailsAndActions.this, R.string.deleteSuccess, Toast.LENGTH_SHORT);
+								    		deleted.show();
+								    	}
+										Intent intentBack = new Intent();
+										intentBack.setClass( ShowBusStopDetailsAndActions.this, BusStopListing.class );
+										startActivity(intentBack);
+										ShowBusStopDetailsAndActions.this.finish();
+									}
+								}).create();
+    	m_confirmDialog.show();
     }
     
     private void editBusStop() {
