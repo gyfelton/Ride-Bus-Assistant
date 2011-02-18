@@ -64,37 +64,37 @@ public class ShowBusStopDetailsAndActions extends Activity {
 		//oppNum may be null
 		m_oppBusStopNum = busStopInfo.getInt( "oppStopNum" );
 		
-		//show the info we got 
-		showBusStopNum = (TextView)findViewById(R.id.showBusStopNumber);
-		showBusStopNum.setText(Integer.toString(m_busStopNumber));
-		
-		showDescription = (TextView)findViewById(R.id.showDescription);
-		if( m_description != null ) {
-			showDescription.setText( m_description );
-		}
-		
-		showDirection = (TextView)findViewById(R.id.showDirection);
-		if( m_direction != null ) {
-			showDirection.setText( m_direction );
-		}
-		
-		showOppBusStopNum = (TextView)findViewById(R.id.showOppBusStopNum);
-		if( m_oppBusStopNum != 0 ) {
-			showOppBusStopNum.setText(Integer.toString(m_oppBusStopNum));
-		}
-		
-		sendSMSButton = (Button)findViewById(R.id.sendSMS);
-		sendSMSButton.setText(sendSMSButton.getText()+Constants.SENDER_NUM);
-		sendSMSButton.setMinimumWidth(200);
-		
-		sendSMSButton.setOnClickListener( new Button.OnClickListener() {
-			public void onClick(View v) {
-				showSendingDialogAndResult();
-			}
-		});
-		
-	    backButton = (Button)findViewById(R.id.showBack);
-	    backButton.setMinimumWidth(200);
+//		//show the info we got 
+//		showBusStopNum = (TextView)findViewById(R.id.showBusStopNumber);
+//		showBusStopNum.setText(Integer.toString(m_busStopNumber));
+//		
+//		showDescription = (TextView)findViewById(R.id.showDescription);
+//		if( m_description != null ) {
+//			showDescription.setText( m_description );
+//		}
+//		
+//		showDirection = (TextView)findViewById(R.id.showDirection);
+//		if( m_direction != null ) {
+//			showDirection.setText( m_direction );
+//		}
+//		
+//		showOppBusStopNum = (TextView)findViewById(R.id.showOppBusStopNum);
+//		if( m_oppBusStopNum != 0 ) {
+//			showOppBusStopNum.setText(Integer.toString(m_oppBusStopNum));
+//		}
+//		
+//		sendSMSButton = (Button)findViewById(R.id.sendSMS);
+//		sendSMSButton.setText(sendSMSButton.getText()+Constants.SENDER_NUM);
+//		sendSMSButton.setMinimumWidth(200);
+//		
+//		sendSMSButton.setOnClickListener( new Button.OnClickListener() {
+//			public void onClick(View v) {
+//				showSendingDialogAndResult();
+//			}
+//		});
+//		
+//	    backButton = (Button)findViewById(R.id.showBack);
+//	    backButton.setMinimumWidth(200);
 	    
 	    backButton.setOnClickListener( new Button.OnClickListener() { 
 	    	public void onClick(View v) {
@@ -106,7 +106,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
 	    });
 	    
 	    //notify user the reply of SMS, need to add to every activity
-	    getSharedPreferences("S.PRE", 0).registerOnSharedPreferenceChangeListener(replyListener);
+	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
 	
 	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
@@ -299,7 +299,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
 
     @Override
     public void onPause() {
-    	getSharedPreferences("S.PRE", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
+    	getSharedPreferences("S.SMS", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
     	super.onPause();
     }
     

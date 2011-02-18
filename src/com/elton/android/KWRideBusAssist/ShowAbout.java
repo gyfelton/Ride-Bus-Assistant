@@ -43,7 +43,7 @@ public class ShowAbout extends Activity {
 	    });
 	    
 	    //notify user the reply of SMS, need to add to every activity
-	    getSharedPreferences("S.PRE", 0).registerOnSharedPreferenceChangeListener(replyListener);
+	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
 	
 	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
@@ -66,7 +66,7 @@ public class ShowAbout extends Activity {
 	
     @Override
     public void onPause() {
-    	getSharedPreferences("S.PRE", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
+    	getSharedPreferences("S.SMS", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
     	super.onPause();
     }
     

@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">巴士搭乘小助手</string>
-	<string name="viewAllList">所有巴士站</string>
+	<string name="viewYourList">你的巴士站列表</string>
 	<string name="busStopListing">巴士搭乘小助手</string>
 	<string name="save">保存</string>
     <string name="back">返回</string>
-    <string name="busStopNum">巴士站编号</string>
-    <string name="oppBusStopNum">正对面的车站编号:</string>
-    <string name="sendSMS">发送短信给</string>
-    <string name="noOppBusStopNum">未知</string>
-    <string name="description">描述：</string>
-    <string name="direction">行驶方向:</string>
+    <string name="busStopNum">巴士站编号: </string>
+    <string name="oppBusStopNum"><b>正对面的车站编号: </b></string>
+    <string name="sendSMS">将当前巴士站号发送到</string>
+    <string name="sendSMSForOppBusStop">将对面的巴士站号发送到</string>
+    <string name="noOppBusStopNum"><i>未知</i></string>
+    <string name="description"><b>描述: </b></string>
+    <string name="direction"><b>行驶方向: </b></string>
     <string name="addBusStop">添加</string>
     <string name="addBusStopHeader">添加一个新的巴士站</string>
     <string name="about">关于</string>
     <string name="editBusStop">编辑</string>
     <string name="deleteBusStop">删除</string>
-    <string name="hintBusStopNum">请在下面输入巴士站编号：</string>
+    <string name="hintBusStopNum">请在下面输入巴士站编号（必须）：</string>
     <string name="busStopNumExample">比如：3333</string>
-    <string name="hintDescription">请在下面输入对这个巴士站的描述：</string>
+    <string name="hintDescription">请在下面输入对这个巴士站的描述（必须）：</string>
     <string name="descriptionExample">比如：我家外面的巴士站</string>
-    <string name="hintDirection">请在下面输入巴士的行驶方向：</string>
+    <string name="hintDirection">请在下面输入巴士的行驶方向（可选）：</string>
     <string name="directionExample">比如：前往/来自于我的大学</string>
     
-    <string name="noDescription">没有这个车站的描述。点击菜单键以添加</string>
-    <string name="noDirection">没有这个车站关于行驶方向的描述。点击菜单键以添加</string>
+    <string name="noDescription"><i>没有这个车站的描述。点击菜单键以添加</i></string>
+    <string name="noDirection"><i>没有这个车站关于行驶方向的描述。点击菜单键以添加</i></string>
     <string name="sendSMSDialogTitle">请稍等</string>
     <string name="sendSMSDialogBody">发送短信中……</string>
     <string name="sendSMSSuccess">发送短信成功！</string>
@@ -36,4 +37,12 @@
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
     <string name="deleteSuccess">巴士站删除成功</string>
+    <string name="addSuccess">添加巴士站成功</string>
+    <string name="hintOppBusStopNum">请在下面输入正对面巴士站的编号（可选）：</string>
+    <string name="currentCity">你当前的城市为：</string>
+    <string name="version">Beta 版本</string>
+    <string name="waterlooKitchener">滑铁卢/基奇纳</string>
+    <string name="toronto">多伦多</string>
+    <string name="prompt_choose_city">请选择</string>
+    
 </resources>

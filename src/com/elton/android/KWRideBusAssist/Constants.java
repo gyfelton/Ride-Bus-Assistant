@@ -14,7 +14,14 @@ public class Constants {
 	public final static String TABLE_HITCOUNT = "hitCount";
 	
 	//sender' number, will be modified later
-	public static String SENDER_NUM = "57555";
+	public static String SENDER_NUM = null;
+	
+	//available cities
+	public static String TORONTO_NAME = "Toronto";
+	public static String TORONTO_NUMBER = "898882";
+	
+	public static String WATERLOO_NAME = "Waterloo";
+	public static String WATERLOO_NUMBER = "57555";
 	
 	public static boolean SMS_INTERCEPTOR_IS_ACTIVE = false;
 }

@@ -26,13 +26,24 @@ public class AppStartConfig extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    //init
-        //set the sender num!
-        Constants.SENDER_NUM = "57555";
+
         Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
         
 	    requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    sp = getSharedPreferences("S.PRE", 0);
 	    editor = sp.edit();
+	    
+	    String cityName = sp.getString("S.PRE_CITY_NAME", "NOT_SPECIFIED");
+	    
+	  //set the sender num, if never set, set to null
+	    if( cityName.equalsIgnoreCase("waterloo") ) { 
+	        Constants.SENDER_NUM = Constants.WATERLOO_NUMBER;
+	    } else if( cityName.equalsIgnoreCase("toronto") ) {
+	    	Constants.SENDER_NUM = Constants.TORONTO_NUMBER;
+	    } else {
+	    	Constants.SENDER_NUM = null;
+	    }
+	    
         if( sp.getBoolean("S.PRE_FIRST_LAUNCH", true) ) {
     	    setContentView(R.layout.firstlunch);
     	    englishButton = (Button)findViewById(R.id.englishButton);

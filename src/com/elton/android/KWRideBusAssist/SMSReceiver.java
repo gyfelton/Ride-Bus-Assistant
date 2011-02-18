@@ -39,7 +39,7 @@ public class SMSReceiver extends BroadcastReceiver {
 					//case 1: 57555==57555 case 2: 57555==+157555
 					if( ( senderNum.startsWith("+") && senderNum.length() <= Constants.SENDER_NUM.length()+4 && senderNum.contains( Constants.SENDER_NUM ) )
 						|| (senderNum.equalsIgnoreCase( Constants.SENDER_NUM ) ) ) {
-						SharedPreferences sp = context.getSharedPreferences("S.PRE", 0);
+						SharedPreferences sp = context.getSharedPreferences("S.SMS", 0);
 						SharedPreferences.Editor editor = sp.edit();
 						editor.putString("message", currMsg.getMessageBody());
 						editor.commit();
