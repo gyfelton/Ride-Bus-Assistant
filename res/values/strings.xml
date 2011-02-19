@@ -27,7 +27,7 @@
     <string name="noDirection"><i>No direction information for this bus stop. Press Menu to add a description.</i></string>
     <string name="sendSMSDialogTitle">Please Wait</string>
     <string name="sendSMSDialogBody">Sending your request now...</string>
-    <string name="sendSMSSuccess">The request is sent successfully!</string>
+    <string name="sendSMSSuccess">The request is sent successfully! Please wait for reply.</string>
     <string name="sendSMSFail">Opps! Sending message has failed, please try again later.</string>
     <string name="receiveSMSDialogTitle">Next Bus Information</string>
     <string name="mainMenuTitle">Bus Ride Assistant</string>

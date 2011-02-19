@@ -46,6 +46,13 @@ public class ShowAbout extends Activity {
 	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
 	
+	//to enable intercept once activity is back
+    @Override
+    public void onResume() {
+    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
+    	super.onResume();
+    }
+	
 	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
 		private AlertDialog m_showReply;
 		@Override

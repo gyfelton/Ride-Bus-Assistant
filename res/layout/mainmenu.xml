@@ -25,7 +25,7 @@ android:gravity="center"
 <Spinner
 android:id="@+id/chooseCity"
 android:layout_width="wrap_content"
-android:layout_height="38dp"
+android:layout_height="wrap_content"
 android:gravity="center"
 android:layout_below="@+id/currentCity"
 android:layout_centerHorizontal="true"
@@ -54,7 +54,7 @@ android:layout_centerHorizontal="true"
 </TextView>
 <TextView
 android:id="@+id/mainMenuTitle"
-android:layout_width="217px"
+android:layout_width="wrap_content"
 android:layout_height="33px"
 android:text="@string/mainMenuTitle"
 android:textSize="22sp"

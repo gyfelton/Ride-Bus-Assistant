@@ -212,7 +212,8 @@ public class BusStopListing extends Activity {
 	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
     }
     
-    
+	
+	
 	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
 		private AlertDialog m_showReply;
 		@Override
@@ -230,29 +231,13 @@ public class BusStopListing extends Activity {
 	    	m_showReply.show();
 	    }
 	};
-//    @Override
-//    public void onResume() {
-//    	 SharedPreferences sp;
-//    	 sp = getSharedPreferences("S.PRE", 0);
-//	     if( sp.getBoolean("S.PRE_CHINESE", false) ) {
-//	       	 Locale locale =  Locale.SIMPLIFIED_CHINESE;
-//	       	 Locale.setDefault(locale);
-//	       	 
-//	       	 Configuration config = new Configuration();
-//	       	 config.locale = locale;
-//	       	 getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-//	   	} else {
-//	       	 Locale locale = Locale.ENGLISH;
-//	       	 Locale.setDefault(locale);
-//	       	 
-//	      	 Resources resources = getBaseContext().getResources();
-//	   	     Configuration config = resources.getConfiguration();
-//	   	     DisplayMetrics dm = resources .getDisplayMetrics(); 
-//	   	     config.locale = locale;
-//	   	     resources.updateConfiguration(config, dm);
-//	   	}
-//    	super.onResume();
-//    }
+	
+	//to enable intercept once activity is back
+    @Override
+    public void onResume() {
+    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
+    	super.onResume();
+    }
     
     //update list view
     void updateAdapter() {

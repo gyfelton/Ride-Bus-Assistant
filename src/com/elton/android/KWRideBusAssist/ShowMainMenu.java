@@ -94,6 +94,13 @@ public class ShowMainMenu extends Activity {
 	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
 	
+	//to enable intercept once activity is back
+    @Override
+    public void onResume() {
+    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
+    	super.onResume();
+    }
+	
 	private int setDefaultCity( String city ) {
 		SharedPreferences sp = getSharedPreferences("S.PRE", 0);
 	    SharedPreferences.Editor editor = sp.edit();
