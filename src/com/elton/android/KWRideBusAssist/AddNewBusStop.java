@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddNewBusStop extends Activity {
+public class AddNewBusStop extends BaseActivity {
 
 	//TODO duplicated declare of database
 	private SQLiteDatabase mSQLiteDatabase = null;
@@ -59,8 +59,13 @@ public class AddNewBusStop extends Activity {
 	        	cv.put(Constants.TABLE_ID, Integer.valueOf( busStopNum.getText().toString() ) );
 	        	cv.put(Constants.TABLE_DESCRIPTION, busStopDescription.getText().toString());
 	        	cv.put(Constants.TABLE_DIRECTION, busDirection.getText().toString());
-	        	//TODO crash when no opp bus stop num!!!
-	        	cv.put(Constants.TABLE_OPPBUSSTOP, Integer.valueOf( oppBusStopNum.getText().toString() ) );
+	        	
+	        	try {
+	        		cv.put(Constants.TABLE_OPPBUSSTOP, Integer.valueOf( oppBusStopNum.getText().toString() ) );
+	        	} catch (NumberFormatException e) {
+	        		//ignore it
+	        		//TODO add error message!
+	        	}
 	        	cv.put(Constants.TABLE_OPPBUSSTOP, "NULL");
 	        	//init count to 0
 	        	cv.put(Constants.TABLE_HITCOUNT, 0);
@@ -91,47 +96,5 @@ public class AddNewBusStop extends Activity {
     			AddNewBusStop.this.finish();
 	    	}
 	    });
-	    
-	    //notify user the reply of SMS, need to add to every activity
-	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
-
-	//to enable intercept once activity is back
-    @Override
-    public void onResume() {
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
-    	super.onResume();
-    }
-	
-	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
-		private AlertDialog m_showReply;
-		@Override
-	    //used to notify user the return of SMS
-	    public void onSharedPreferenceChanged( SharedPreferences reply, String message) {
-	    	m_showReply = new AlertDialog.Builder(AddNewBusStop.this)
-	    								.setTitle(R.string.receiveSMSDialogTitle)
-	    								.setMessage(reply.getString(message, "Opps! Something is wrong! pleace contact me!"))
-	    								.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-											@Override
-											public void onClick(DialogInterface dialog, int which) {
-												m_showReply.dismiss();
-											}
-										}).create();
-	    	m_showReply.show();
-	    }
-	};
-	
-    @Override
-    public void onPause() {
-    	getSharedPreferences("S.SMS", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
-    	super.onPause();
-    }
-    
-	@Override
-    //need to be included in every activity
-    public void onSaveInstanceState(Bundle outState) {
-    	//when click HOME button, set active to false
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
-    	Log.d("onSaveInstance", "set active to false");
-    }
 }

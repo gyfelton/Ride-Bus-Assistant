@@ -23,5 +23,8 @@ public class Constants {
 	public static String WATERLOO_NAME = "Waterloo";
 	public static String WATERLOO_NUMBER = "57555";
 	
+	public static String VANCOUVER_NAME = "Vancouver";
+	public static String VANCOUVER_NUMBER = "33333";
+	
 	public static boolean SMS_INTERCEPTOR_IS_ACTIVE = false;
 }

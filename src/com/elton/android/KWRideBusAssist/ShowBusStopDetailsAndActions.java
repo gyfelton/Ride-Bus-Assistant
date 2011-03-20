@@ -28,7 +28,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ShowBusStopDetailsAndActions extends Activity {
+public class ShowBusStopDetailsAndActions extends BaseActivity {
 
 	//TODO duplicated declare of database
 	private SQLiteDatabase mSQLiteDatabase = null;
@@ -104,35 +104,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
     			ShowBusStopDetailsAndActions.this.finish();
 	    	}
 	    });
-	    
-	    //notify user the reply of SMS, need to add to every activity
-	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
-	
-	//to enable intercept once activity is back
-    @Override
-    public void onResume() {
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
-    	super.onResume();
-    }
-	
-	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
-		private AlertDialog m_showReply;
-		@Override
-	    //used to notify user the return of SMS
-	    public void onSharedPreferenceChanged( SharedPreferences reply, String message) {
-	    	m_showReply = new AlertDialog.Builder(ShowBusStopDetailsAndActions.this)
-	    								.setTitle(R.string.receiveSMSDialogTitle)
-	    								.setMessage(reply.getString(message, "Opps! Something is wrong! pleace contact me!"))
-	    								.setNegativeButton("Ok", new OnClickListener() {
-											@Override
-											public void onClick(DialogInterface dialog, int which) {
-												m_showReply.dismiss();
-											}
-										}).create();
-	    	m_showReply.show();
-	    }
-	};
 	
 	public void showSendingDialogAndResult() {
 		//creating a progress dialog
@@ -146,7 +118,6 @@ public class ShowBusStopDetailsAndActions extends Activity {
 		//use handler to implement showing of result toast after dialog;
 		final Handler myhandler = new Handler() {
 			public void handleMessage(Message m) {
-				//TODO make it shown after sending dialog
 				Bundle b = m.getData();
 				int resultCode = b.getInt("resultCode");
 				Toast sendResultToast;
@@ -171,7 +142,7 @@ public class ShowBusStopDetailsAndActions extends Activity {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					// may have problem here?
 					e.printStackTrace();
 				}
 				m_sendingDialog.dismiss();
@@ -247,7 +218,6 @@ public class ShowBusStopDetailsAndActions extends Activity {
     							.setPositiveButton(R.string.confirm, new OnClickListener() {
 									@Override
 									public void onClick(DialogInterface dialog, int which) {
-										// TODO Auto-generated method stub
 								    	mSQLiteDatabase = ShowBusStopDetailsAndActions.this.openOrCreateDatabase(Constants.DATABASE_NAME, MODE_PRIVATE, null);
 								    	if( mSQLiteDatabase.delete(Constants.TABLE_NAME, Constants.TABLE_ID + "=?", new String[] {Integer.toString(m_busStopNumber)} ) > 0) {
 								    		Toast deleted = Toast.makeText(ShowBusStopDetailsAndActions.this, R.string.deleteSuccess, Toast.LENGTH_SHORT);
@@ -302,19 +272,5 @@ public class ShowBusStopDetailsAndActions extends Activity {
     	//sms.sendTextMessage("57555", null, Integer.toString(busStopNum), null, null);
     	//Toast.makeText(ShowBusStopDetailsAndActions.this, "sent", Toast.LENGTH_LONG).show();
     	return m_resultCode;
-    }
-
-    @Override
-    public void onPause() {
-    	getSharedPreferences("S.SMS", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
-    	super.onPause();
-    }
-    
-    @Override
-    //need to be included in every activity
-    public void onSaveInstanceState(Bundle outState) {
-    	//when click HOME button, set active to false
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
-    	Log.d("onSaveInstance", "set active to false");
     }
 }

@@ -47,7 +47,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BusStopListing extends Activity {
+public class BusStopListing extends BaseActivity {
 	
 	private SQLiteDatabase mSQLiteDatabase = null;
 	
@@ -207,36 +207,6 @@ public class BusStopListing extends Activity {
 //        		return true;
 //        	}
 //		});
-        
-	    //notify user the reply of SMS, need to add to every activity
-	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
-    }
-    
-	
-	
-	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
-		private AlertDialog m_showReply;
-		@Override
-	    //used to notify user the return of SMS
-	    public void onSharedPreferenceChanged( SharedPreferences reply, String message) {
-	    	m_showReply = new AlertDialog.Builder(BusStopListing.this)
-	    								.setTitle(R.string.receiveSMSDialogTitle)
-	    								.setMessage(reply.getString(message, "Opps! Something is wrong! pleace contact me!"))
-	    								.setNegativeButton("Ok", new OnClickListener() {
-											@Override
-											public void onClick(DialogInterface dialog, int which) {
-												m_showReply.dismiss();
-											}
-										}).create();
-	    	m_showReply.show();
-	    }
-	};
-	
-	//to enable intercept once activity is back
-    @Override
-    public void onResume() {
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
-    	super.onResume();
     }
     
     //update list view
@@ -298,19 +268,6 @@ public class BusStopListing extends Activity {
     	return true;
     }
     
-    @Override
-    public void onPause() {
-    	getSharedPreferences("S.SMS", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
-    	super.onPause();
-    }
-    
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-    	//when click HOME button, set active to false
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
-    	Log.v("onSaveInstanceState", "set active to false");
-    }
-    
 	public void showSendingDialogAndResult(String busStopNum) {
 		//creating a progress dialog
 		final String m_busStopNum = busStopNum;
@@ -324,7 +281,6 @@ public class BusStopListing extends Activity {
 		//use handler to implement showing of result toast after dialog;
 		final Handler myhandler = new Handler() {
 			public void handleMessage(Message m) {
-				//TODO make it shown after sending dialog
 				Bundle b = m.getData();
 				int resultCode = b.getInt("resultCode");
 				Toast sendResultToast;
@@ -349,7 +305,6 @@ public class BusStopListing extends Activity {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				m_sendingDialog.dismiss();

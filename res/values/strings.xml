@@ -43,4 +43,6 @@
      <string name="waterlooKitchener">Waterloo/Kitchener</string>
      <string name="toronto">Toronto</string>
      <string name="prompt_choose_city">Please select</string>
+     <string name="cityNotChosen">Please choose a city to continue.</string>
+     <string name="vancouver">Vancouver</string>
 </resources>

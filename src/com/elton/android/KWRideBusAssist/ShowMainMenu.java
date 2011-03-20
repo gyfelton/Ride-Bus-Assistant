@@ -16,8 +16,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class ShowMainMenu extends Activity {
+public class ShowMainMenu extends BaseActivity {
 	private Button viewAllButton;
 	private Spinner chooseCity;
 	private ArrayAdapter<String> cityList;
@@ -36,6 +37,7 @@ public class ShowMainMenu extends Activity {
 	    cityList.add(getString(R.string.prompt_choose_city));
 	    cityList.add(getString(R.string.waterlooKitchener));
 	    cityList.add(getString(R.string.toronto));
+	    cityList.add(getString(R.string.vancouver));
 	    
 	    chooseCity.setAdapter(cityList);
 	    
@@ -71,8 +73,6 @@ public class ShowMainMenu extends Activity {
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 	    viewAllButton = (Button)findViewById(R.id.viewYourList);
@@ -85,21 +85,13 @@ public class ShowMainMenu extends Activity {
 	    			startActivity(start);
 	    			ShowMainMenu.this.finish();
 	    		} else {
+	    			Toast cityNotChosen = Toast.makeText(ShowMainMenu.this, R.string.cityNotChosen, Toast.LENGTH_SHORT);
+	    			cityNotChosen.show();
 	    			chooseCity.setPressed(true);
 	    		}
 	    	}
 	    });
-	    
-	    //notify user the reply of SMS, need to add to every activity
-	    getSharedPreferences("S.SMS", 0).registerOnSharedPreferenceChangeListener(replyListener);
 	}
-	
-	//to enable intercept once activity is back
-    @Override
-    public void onResume() {
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = true;
-    	super.onResume();
-    }
 	
 	private int setDefaultCity( String city ) {
 		SharedPreferences sp = getSharedPreferences("S.PRE", 0);
@@ -115,35 +107,4 @@ public class ShowMainMenu extends Activity {
 	    editor.commit();
 		return 0;
 	}
-	private OnSharedPreferenceChangeListener replyListener  = new OnSharedPreferenceChangeListener() {
-		private AlertDialog m_showReply;
-		@Override
-	    //used to notify user the return of SMS
-	    public void onSharedPreferenceChanged( SharedPreferences reply, String message) {
-	    	m_showReply = new AlertDialog.Builder(ShowMainMenu.this)
-	    								.setTitle(R.string.receiveSMSDialogTitle)
-	    								.setMessage(reply.getString(message, "Opps! Something is wrong! pleace contact me!"))
-	    								.setNegativeButton("Ok", new OnClickListener() {
-											@Override
-											public void onClick(DialogInterface dialog, int which) {
-												m_showReply.dismiss();
-											}
-										}).create();
-	    	m_showReply.show();
-	    }
-	};
-	
-    @Override
-    public void onPause() {
-    	getSharedPreferences("S.SMS", 0).unregisterOnSharedPreferenceChangeListener(replyListener);
-    	super.onPause();
-    }
-    
-	@Override
-    //need to be included in every activity
-    public void onSaveInstanceState(Bundle outState) {
-    	//when click HOME button, set active to false
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
-    	Log.d("onSaveInstance", "set active to false");
-    }
 }

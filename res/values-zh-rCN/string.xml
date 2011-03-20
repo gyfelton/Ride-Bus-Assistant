@@ -17,11 +17,11 @@
     <string name="about">关于</string>
     <string name="editBusStop">编辑</string>
     <string name="deleteBusStop">删除</string>
-    <string name="hintBusStopNum">请在下面输入巴士站编号（必须）：</string>
+    <string name="hintBusStopNum">巴士站编号（必须）：</string>
     <string name="busStopNumExample">比如：3333</string>
-    <string name="hintDescription">请在下面输入对这个巴士站的描述（必须）：</string>
+    <string name="hintDescription">巴士站的描述（必须）：</string>
     <string name="descriptionExample">比如：我家外面的巴士站</string>
-    <string name="hintDirection">请在下面输入巴士的行驶方向（可选）：</string>
+    <string name="hintDirection">巴士的行驶方向（可选）：</string>
     <string name="directionExample">比如：前往/来自于我的大学</string>
     
     <string name="noDescription"><i>没有这个车站的描述。点击菜单键以添加</i></string>
@@ -38,11 +38,12 @@
     <string name="cancel">取消</string>
     <string name="deleteSuccess">巴士站删除成功</string>
     <string name="addSuccess">添加巴士站成功</string>
-    <string name="hintOppBusStopNum">请在下面输入正对面巴士站的编号（可选）：</string>
+    <string name="hintOppBusStopNum">正对面巴士站的编号（可选）：</string>
     <string name="currentCity">你当前的城市为：</string>
     <string name="version">Beta 版本</string>
     <string name="waterlooKitchener">滑铁卢/基奇纳</string>
     <string name="toronto">多伦多</string>
     <string name="prompt_choose_city">请选择</string>
-    
+    <string name="cityNotChosen">请选择一个城市</string>
+    <string name="vancouver">温哥华</string>
 </resources>

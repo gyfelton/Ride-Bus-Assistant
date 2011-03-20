@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-public class AppStartConfig extends Activity {
+public class AppStartConfig extends BaseActivity {
 
 	private Button englishButton;
 	private Button chineseButton;
@@ -98,12 +98,4 @@ public class AppStartConfig extends Activity {
 	    		AppStartConfig.this.finish();
         }
 	}
-	
-	@Override
-    //need to be included in every activity
-    public void onSaveInstanceState(Bundle outState) {
-    	//when click HOME button, set active to false
-    	Constants.SMS_INTERCEPTOR_IS_ACTIVE = false;
-    	Log.d("onSaveInstance", "set active to false");
-    }
 }
